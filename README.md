@@ -443,3 +443,90 @@ if __name__ == '__main__':
     print(max_hour_glass)
 
 ```
+[Day 12: Inheritance](https://www.hackerrank.com/challenges/30-inheritance/problem)
+
+```java
+ import java.util.*;
+
+class Person {
+	protected String firstName;
+	protected String lastName;
+	protected int idNumber;
+	
+	// Constructor
+	Person(String firstName, String lastName, int identification){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.idNumber = identification;
+	}
+	
+	// Print person data
+	public void printPerson(){
+		 System.out.println(
+				"Name: " + lastName + ", " + firstName 
+			+ 	"\nID: " + idNumber); 
+	}
+	 
+}
+
+class Student extends Person{
+	private int[] testScores;
+    /*<===========================Solution Starts============================>*/
+    public String firstName;
+    public String lastName;
+    public int id;
+    public char c;
+    public Student(String firstName,String lastName,int id,int testScores[])
+    {
+        super(firstName,lastName,id);
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.id = id;
+        this.testScores = testScores;
+    }
+    public char calculate()
+    {
+       
+        int sum=0;
+        int avg;
+        for(int i = 0;i < testScores.length;i++)
+        {
+            sum+=testScores[i];
+        }
+        avg=sum/testScores.length;
+        if(90<=avg && avg<=100)
+            c='O';
+        else if(80<=avg && avg<90)
+            c='E';
+        else if(70<=avg && avg<80)
+            c='A';
+        else if(55<=avg && avg<70)
+            c='P';
+        else if(40<=avg && avg<55)
+            c='D';
+        else if(avg<40)
+            c='T';
+        return c;
+    }
+   /*<===========================Solution Ends============================>*/ 
+}
+
+class Solution {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String firstName = scan.next();
+		String lastName = scan.next();
+		int id = scan.nextInt();
+		int numScores = scan.nextInt();
+		int[] testScores = new int[numScores];
+		for(int i = 0; i < numScores; i++){
+			testScores[i] = scan.nextInt();
+		}
+		scan.close();
+		
+		Student s = new Student(firstName, lastName, id, testScores);
+		s.printPerson();
+		System.out.println("Grade: " + s.calculate());
+	}
+}
+```
